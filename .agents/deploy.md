@@ -16,8 +16,7 @@ This agent does not write product code except for deployment configuration fixes
   - `npm run lint`
   - `npm run test`
   - `npm run build`
-- Confirm secret files are not committed:
-  - `.env`
+- Confirm local secret files are not committed:
   - `.env.local`
   - `.env.production`
 - Confirm Vercel environment variables are present when needed:

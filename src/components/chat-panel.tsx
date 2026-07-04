@@ -55,7 +55,7 @@ export function ChatPanel() {
           ...nextMessages,
           {
             role: "assistant",
-            content: "That password did not unlock the recommendations. Contact us @lizuer.joey@gmail.com for the password.",
+            content: "That password did not unlock the recommendations.",
           },
         ]);
         return;

@@ -36,7 +36,7 @@ NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY
 ```
 
-Do not commit `.env`, `.env.local`, or copied env files.
+Do not commit `.env.local` or copied env files.
 
 ## Preview Smoke Test
 

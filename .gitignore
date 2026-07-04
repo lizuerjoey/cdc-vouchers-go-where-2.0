@@ -3,10 +3,10 @@ node_modules
 coverage
 playwright-report
 test-results
-.env
 .env.local
+.env.production
+.env.*.local
 .vercel
 *.tsbuildinfo
 
 .vercel
-.env*
