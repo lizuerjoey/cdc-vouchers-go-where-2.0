@@ -10,8 +10,21 @@ type ChatMessage = {
   content: string;
 };
 
+const chatPassword = process.env.CHAT_PASSWORD ?? "cdc-vouchers";
+
 export async function POST(request: Request) {
-  const { messages = [] } = (await request.json()) as { messages?: ChatMessage[] };
+  const { messages = [], password = "", verifyOnly = false } = (await request.json()) as {
+    messages?: ChatMessage[];
+    password?: string;
+    verifyOnly?: boolean;
+  };
+  if (password !== chatPassword) {
+    return Response.json({ content: "Unauthorized" }, { status: 401 });
+  }
+  if (verifyOnly) {
+    return Response.json({ ok: true });
+  }
+
   const latestUserMessage = [...messages].reverse().find((message) => message.role === "user")?.content ?? "";
   const retrievedMerchants = retrieveMerchantsForPrompt(latestUserMessage);
 

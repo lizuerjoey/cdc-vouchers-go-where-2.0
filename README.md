@@ -26,6 +26,7 @@ Then open `http://localhost:3000`.
 Copy `.env.example` to `.env.local` and fill values as needed.
 
 - `OPENAI_API_KEY`: enables AI-generated recommendations
+- `CHAT_PASSWORD`: protects the recommendation chat. Defaults to `cdc-vouchers` locally when unset.
 - `NEXT_PUBLIC_SUPABASE_URL`: optional v1 placeholder for Supabase integration
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: optional v1 placeholder for Supabase integration
 

@@ -13,6 +13,8 @@ test("filters merchant cards by cafe category", async ({ page }) => {
 test("chat panel returns grounded fallback without an API key", async ({ page }) => {
   await page.goto("/");
 
+  await page.getByLabel("Recommendation password").fill("cdc-vouchers");
+  await page.getByLabel("Unlock recommendations").click();
   await page.getByPlaceholder("Ask for cafes, dinner, brows...").fill("lash lift in Serangoon");
   await page.getByLabel("Send recommendation request").click();
 
