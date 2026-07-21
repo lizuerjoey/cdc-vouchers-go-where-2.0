@@ -15,10 +15,10 @@ export function FilterChip({ active, children, onClick }: FilterChipProps) {
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "h-10 rounded border px-4 text-sm font-semibold transition",
+        "h-9 rounded-full border px-4 text-sm font-semibold transition",
         active
-          ? "border-gov-blue bg-gov-blue text-white"
-          : "border-gov-line bg-white text-gov-ink hover:border-gov-blue hover:text-gov-blue",
+          ? "border-gov-navy bg-gov-navy text-white shadow-sm"
+          : "border-gov-line bg-slate-50 text-slate-600 hover:border-gov-blue hover:bg-blue-50 hover:text-gov-blue",
       )}
     >
       {children}

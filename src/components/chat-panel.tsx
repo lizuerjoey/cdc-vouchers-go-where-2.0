@@ -113,15 +113,15 @@ export function ChatPanel() {
   }
 
   return (
-    <aside className="flex h-full min-h-[560px] flex-col rounded-lg border border-gov-line bg-white shadow-panel">
-      <div className="border-b border-gov-line p-5">
+    <aside className="flex h-full min-h-[560px] flex-col overflow-hidden rounded-2xl border border-gov-line bg-white shadow-panel">
+      <div className="border-b border-blue-900/10 bg-gov-navy p-5 text-white">
         <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded bg-gov-blue text-white">
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-gov-sky ring-1 ring-white/15">
             <Sparkles size={20} aria-hidden />
           </span>
           <div>
-            <h2 className="text-lg font-bold text-gov-ink">Ask for recommendations</h2>
-            <p className="text-sm text-slate-600">Grounded in seeded merchants</p>
+            <h2 className="text-lg font-bold text-white">Your neighbourhood guide</h2>
+            <p className="text-sm text-blue-100/70">Smart, grounded recommendations</p>
           </div>
         </div>
       </div>
@@ -131,10 +131,10 @@ export function ChatPanel() {
           <div className="flex-1 space-y-4 overflow-y-auto p-5">
             {messages.map((message, index) => (
               <div key={`${message.role}-${index}`} className="flex gap-3">
-                <span className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded bg-gov-mist text-gov-blue">
+                <span className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-gov-blue">
                   {message.role === "assistant" ? <Bot size={17} aria-hidden /> : <User size={17} aria-hidden />}
                 </span>
-                <div className="rounded-lg bg-slate-50 p-3 text-sm leading-6 text-slate-700">
+                <div className="rounded-2xl rounded-tl-sm bg-slate-50 p-3 text-sm leading-6 text-slate-700">
                   <FormattedMessage content={message.content} />
                 </div>
               </div>
@@ -154,7 +154,7 @@ export function ChatPanel() {
                   key={prompt}
                   type="button"
                   onClick={() => void submitMessage(prompt)}
-                  className="rounded border border-gov-line px-3 py-2 text-left text-xs font-semibold text-slate-700 hover:border-gov-blue hover:text-gov-blue"
+                  className="rounded-xl border border-gov-line bg-slate-50 px-3 py-2 text-left text-xs font-semibold text-slate-600 transition hover:border-gov-blue hover:bg-blue-50 hover:text-gov-blue"
                 >
                   {prompt}
                 </button>
@@ -165,11 +165,11 @@ export function ChatPanel() {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Ask for cafes, dinner, brows..."
-                className="min-w-0 flex-1 rounded border border-gov-line px-3 text-sm"
+                className="min-w-0 flex-1 rounded-xl border border-gov-line bg-slate-50 px-3 text-sm focus:bg-white"
               />
               <button
                 type="submit"
-                className="grid h-11 w-11 shrink-0 place-items-center rounded bg-gov-red text-white transition hover:bg-red-700"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gov-red text-white transition hover:bg-red-700"
                 aria-label="Send recommendation request"
               >
                 <Send size={18} aria-hidden />
@@ -179,16 +179,16 @@ export function ChatPanel() {
         </>
       ) : (
         <div className="flex flex-1 flex-col justify-center gap-5 p-5">
-          <div className="rounded-lg border border-dashed border-gov-line bg-slate-50 p-5">
+          <div className="rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
             <div className="mb-4 flex items-center gap-3">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded bg-gov-mist text-gov-blue">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white text-gov-blue shadow-sm">
                 <LockKeyhole size={18} aria-hidden />
               </span>
               <p className="text-sm font-semibold leading-6 text-gov-ink">
-                Recommendations are in VIP mode.
+                Unlock personalised recommendations
               </p>
             </div>
-            <p className="text-sm leading-6 text-slate-600">Email lizuer.joey@gmail.com (developer) or sandy.kyu95@gmail.com (designer) for the magic word.</p>
+            <p className="text-sm leading-6 text-slate-600">This prototype feature is password protected. Contact the project team for access.</p>
           </div>
           <form onSubmit={onUnlock} className="flex gap-2">
             <input
@@ -196,13 +196,13 @@ export function ChatPanel() {
               onChange={(event) => setPasswordInput(event.target.value)}
               placeholder="Enter password"
               type="password"
-              className="min-w-0 flex-1 rounded border border-gov-line px-3 text-sm"
+              className="min-w-0 flex-1 rounded-xl border border-gov-line bg-slate-50 px-3 text-sm focus:bg-white"
               aria-label="Recommendation password"
             />
             <button
               type="submit"
               disabled={isUnlocking}
-              className="grid h-11 w-11 shrink-0 place-items-center rounded bg-gov-red text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gov-red text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-slate-400"
               aria-label="Unlock recommendations"
             >
               {isUnlocking ? <Loader2 className="animate-spin" size={18} aria-hidden /> : <KeyRound size={18} aria-hidden />}

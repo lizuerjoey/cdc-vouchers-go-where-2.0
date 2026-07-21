@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  color: #1f2933;
-  background: #f4f7fb;
+  color: #172b3a;
+  background: #f5f8fb;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -15,6 +16,23 @@ body {
   margin: 0;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+::selection {
+  background: #cfeeff;
+  color: #082f49;
+}
+
+.hero-grid {
+  background-image: linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to right, transparent, black 35%, black);
+}
+
+@layer components {
+  .control {
+    @apply h-12 w-full rounded-xl border border-gov-line bg-slate-50 text-sm transition placeholder:text-slate-400 hover:border-slate-300 focus:border-gov-blue focus:bg-white focus:outline-none;
+  }
 }
 
 button,
@@ -28,6 +46,6 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid rgba(18, 84, 165, 0.35);
+  outline: 3px solid rgba(23, 105, 170, 0.28);
   outline-offset: 2px;
 }
