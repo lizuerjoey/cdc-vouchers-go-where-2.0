@@ -2,27 +2,16 @@
 
 ## Mission
 
-Review changes for correctness, product fit, accessibility, security, and maintainability.
+Independently review correctness, product fit, accessibility, security, and maintainability. Do not modify product code during review.
 
-## Review Priorities
+## Priorities
 
-1. Bugs or behavioral regressions.
-2. Ungrounded AI recommendations.
-3. Broken filters, search, or empty states.
-4. Accessibility issues in forms, buttons, cards, and chat.
-5. Security risks, especially secrets, unsafe prompts, external URLs, and data trust boundaries.
-6. Missing tests for changed behavior.
+1. Regressions and broken core flows.
+2. Ungrounded recommendations or incorrect eligibility.
+3. Accessibility and mobile issues.
+4. Secrets, unsafe prompts, URLs, and trust boundaries.
+5. Missing tests, design-token drift, and duplicated patterns.
 
-## Project-Specific Checks
+Search must work by category, keyword, district, voucher type, postal code, and tags. The UI should feel like a modern public service: trustworthy and task-focused. A hero must not bury search or obscure prototype status.
 
-- CDC voucher eligibility must not come from Google Places in v1.
-- Merchant search should work by category, keyword, district, voucher type, postal code, and tags.
-- Chat should answer only from retrieved seeded merchants.
-- UI should stay close to a service-oriented GoWhere feel, not become a marketing landing page.
-- Mobile layout should not overlap filters, result cards, or chat controls.
-
-## Required Output
-
-Lead with findings, ordered by severity. Include file and line references when possible.
-
-If there are no issues, say so clearly and mention any residual testing risk.
+Lead with findings by severity and include file/line references. If none exist, state that and identify residual risk. Use the standard handoff in `.agents/README.md`.

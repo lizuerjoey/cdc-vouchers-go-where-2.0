@@ -2,41 +2,22 @@
 
 ## Mission
 
-Verify the app with automated checks and targeted manual scenarios.
-
-## Required Runtime
-
-Use Node 22+.
+Verify the final reviewed commit on Node 22. Do not repair product code during QA.
 
 ## Automated Checks
 
-Run:
+On CI or a clean checkout run `npm ci`, then typecheck, lint, unit tests, build, and E2E tests. In an existing worktree, do not reinstall unless the lockfile changed. Record skipped checks and why.
 
-```bash
-npm install
-npm run typecheck
-npm run lint
-npm run test
-npm run build
-npm run test:e2e
-```
+Run both Playwright projects (`chromium` and `mobile`).
 
 ## Manual Scenarios
 
-- Search `Katong` and confirm `Katong Sourdough` appears.
-- Filter `Cafes` and confirm non-cafe beauty merchants disappear.
-- Filter `Lash lift` and confirm `Serangoon Lash Studio` appears.
-- Search a nonexistent term and confirm the empty state is clear.
-- Ask chat: `Find lash lift places that take vouchers`.
-- Confirm chat mentions only seeded merchants.
-- Check mobile viewport for filter wrapping, result readability, and chat usability.
+- Search `Katong`; verify `Katong Sourdough`.
+- Filter Cafes and Lash lift; verify correct inclusions/exclusions.
+- Verify the empty state for a nonexistent search.
+- Ask chat for voucher-accepting lash-lift merchants; verify only seeded merchants.
+- Verify mobile layout and visible keyboard focus through filters, links, and chat.
 
-## Handoff Format
+Any failed build, typecheck, test, E2E test, or core flow blocks deployment. Report lint warnings for classification. Return failures to Builder or Frontend and rerun against the new final commit.
 
-Report:
-
-- Environment used
-- Commands run
-- Pass/fail summary
-- Screenshots or failure traces for UI issues
-- Blocking issues versus nice-to-have polish
+Use the standard handoff in `.agents/README.md`, including runtime, commands, totals, screenshots, and traces.

@@ -1,55 +1,30 @@
 # Deploy Runbook
 
-Use this runbook with `.agents/deploy.md`.
+Use with `.agents/deploy.md`.
 
-## Vercel Project Settings
+## Vercel Settings
 
 ```txt
 Framework Preset: Next.js
-Install Command: npm install
+Install Command: npm ci
 Build Command: npm run build
 Output Directory: default
 Node.js Version: 22.x
 ```
 
-## Required Before Deploy
+Before deployment, confirm Node 22 and that `npm ci`, typecheck, lint, unit tests, build, and E2E tests passed on the deployment SHA.
 
-```bash
-node --version
-npm --version
-npm install
-npm run typecheck
-npm run lint
-npm run test
-npm run build
-```
+## CLI Fallback
 
-Node must be `v22.x`.
+Prefer GitHub integration. Otherwise use `npx vercel pull --yes --environment=preview` and `npx vercel deploy`; after validation, promote with `npx vercel deploy --prod`.
 
-## Environment Variables
-
-Optional for v1 fallback mode:
-
-```txt
-OPENAI_API_KEY
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-```
-
-Do not commit `.env.local` or copied env files.
+Optional fallback-mode variables are `OPENAI_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Never commit local environment files.
 
 ## Preview Smoke Test
 
-- Visit the preview URL.
-- Click `Cafes`; confirm cafe cards remain.
-- Click `Lash lift`; confirm `Serangoon Lash Studio` appears.
-- Search `Katong`; confirm `Katong Sourdough` appears.
-- Ask chat: `Find lash lift places that take vouchers`.
-- Check mobile viewport.
+- Verify the preview SHA.
+- Load home, test Cafes, Lash lift, and Katong search.
+- Test grounded chat, map links, and mobile layout.
+- Check browser console and client output for errors or secrets.
 
-## Common Vercel Failures
-
-- `Node.js version` error: set Vercel Node.js Version to `22.x`.
-- `Module not found`: confirm the file is committed and pushed with correct casing.
-- `OPENAI_API_KEY` error: either add the env var or confirm fallback mode is still working.
-- Old deployment content: check the Git branch connected to Vercel.
+For failures, verify Node version first, file casing for missing modules, environment intent for chat, and the connected branch for stale content.
